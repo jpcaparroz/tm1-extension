@@ -1,26 +1,39 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import fs from 'fs';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+	console.log(__dirname);
+	const filePath = 'e:/Filipe/prog/repo/tm1-extension/src/processes.json';
+	// const filePath = '../../src/processes.json';
+	
+	function readJSONFile(filePath: string): any {
+		const data = fs.readFileSync(filePath, 'utf8');
+		return JSON.parse(data);
+	}
+	
+	const processList = readJSONFile(filePath);
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "tm1-extension" is now active!');
+	let processes = processList.value.map((process:object) => {
+		return process
+	})
+	let processesNames = processList.value.map((process:object) => {
+		console.log(process.Name);
+		return process
+	})
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('tm1-extension.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from tm1-extension!');
+	// console.log(processes);
+	
+	
+	let disposable = vscode.commands.registerCommand('tm1-extension.tm1Test', () => {
+		console.log('teste');
 	});
 
 	context.subscriptions.push(disposable);
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

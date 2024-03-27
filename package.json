@@ -14,10 +14,35 @@
   "contributes": {
     "commands": [
       {
-        "command": "tm1-extension.helloWorld",
-        "title": "Hello World"
+        "command": "tm1-extension.tm1Test",
+        "title": "TM1 teste"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "tm1-explorer",
+          "title": "TM1 Explorer",
+          "icon": "./src/assets/model-cube-space.svg"
+        }
+      ]
+    },
+    "views": {
+      "tm1-explorer": [
+        {
+          "id": "package-cubes",
+          "name": "Cubes"
+        },
+        {
+          "id": "package-dimensions",
+          "name": "Dimension"
+        },
+        {
+          "id": "package-processes",
+          "name": "Processes"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

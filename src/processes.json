@@ -1,0 +1,744 @@
+{
+    "@odata.context": "$metadata#Processes(Name,PrologProcedure,MetadataProcedure,DataProcedure,EpilogProcedure,DataSource,Parameters,Variables)",
+    "value": [
+        {
+            "@odata.etag": "W/\"59185638909b147d0f4b65e15eb5fcbd9ad79199\"",
+            "Name": "Alt_02_Centro_Custo",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONDELETEALLELEMENTS('02_Centro_Custo');\r\nDIMENSIONSORTORDER('02_Centro_Custo','BYINPUT','ASCENDING','BYHIERARCHY','ASCENDING');\r\nATTRDELETE('02_Centro_Custo','DESC');\r\nATTRINSERT('02_Centro_Custo','','DESC','A');\r\n#****End: Generated Statements****\r\n",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONELEMENTINSERT('02_Centro_Custo','',vCodCeCo,'n');\r\nDIMENSIONELEMENTINSERT('02_Centro_Custo','',vCodGerencia,'c');\r\nDIMENSIONELEMENTINSERT('02_Centro_Custo','',vCodDiretoria,'c');\r\nDIMENSIONELEMENTINSERT('02_Centro_Custo','',vTotalCeCo,'c');\r\nDIMENSIONELEMENTCOMPONENTADD('02_Centro_Custo',vCodGerencia,vCodCeCo,1.000000);\r\nDIMENSIONELEMENTCOMPONENTADD('02_Centro_Custo',vCodDiretoria,vCodGerencia,1.000000);\r\nDIMENSIONELEMENTCOMPONENTADD('02_Centro_Custo',vTotalCeCo,vCodDiretoria,1.000000);\r\n#****End: Generated Statements****\r\n",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nATTRPUTS(vDescCeco,'02_Centro_Custo',vCodCeCo,'DESC');\r\nATTRPUTS(vDescGerencia,'02_Centro_Custo',vCodGerencia,'DESC');\r\nATTRPUTS(vDescDiretoria,'02_Centro_Custo',vCodDiretoria,'DESC');\r\n#****End: Generated Statements****\r\n",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataSource": {
+                "Type": "ODBC",
+                "dataSourceNameForClient": "Base_List",
+                "dataSourceNameForServer": "Base_List",
+                "password": "rtqvQZmucA4+uRNXAge6hQ==",
+                "query": "SELECT * FROM \"Centro_Custo$\"",
+                "userName": "",
+                "usesUnicode": true
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vCodCeCo",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vDescCeco",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vCodGerencia",
+                    "Type": "String",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vDescGerencia",
+                    "Type": "String",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vCodDiretoria",
+                    "Type": "String",
+                    "Position": 5,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vDescDiretoria",
+                    "Type": "String",
+                    "Position": 6,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vTotalCeCo",
+                    "Type": "String",
+                    "Position": 7,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"e5b9a6c4eb5d7ec5110d7f42df39e9fbebdd450c\"",
+            "Name": "Alt_02_Conta_Contabil",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONDESTROY('02_Conta_Contabil');\r\nDIMENSIONCREATE('02_Conta_Contabil');\r\nDIMENSIONSORTORDER('02_Conta_Contabil','BYINPUT','ASCENDING','BYHIERARCHY','ASCENDING');\r\nATTRDELETE('02_Conta_Contabil','DESC');\r\nATTRINSERT('02_Conta_Contabil','','DESC','A');\r\n#****End: Generated Statements****\r\n",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONELEMENTINSERT('02_Conta_Contabil','',vCodConta,'n');\r\nDIMENSIONELEMENTINSERT('02_Conta_Contabil','',vCodGrupoConta,'c');\r\nDIMENSIONELEMENTINSERT('02_Conta_Contabil','',vTotalCC,'c');\r\nDIMENSIONELEMENTCOMPONENTADD('02_Conta_Contabil',vCodGrupoConta,vCodConta,1.000000);\r\nDIMENSIONELEMENTCOMPONENTADD('02_Conta_Contabil',vTotalCC,vCodGrupoConta,1.000000);\r\n#****End: Generated Statements****\r\n",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nATTRPUTS(vDescConta,'02_Conta_Contabil',vCodConta,'DESC');\r\nATTRPUTS(vDescGrupoConta,'02_Conta_Contabil',vCodGrupoConta,'DESC');\r\n#****End: Generated Statements****\r\n",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataSource": {
+                "Type": "ODBC",
+                "dataSourceNameForClient": "Base_List",
+                "dataSourceNameForServer": "Base_List",
+                "password": "rtqvQZmucA4+uRNXAge6hQ==",
+                "query": "SELECT * FROM \"Conta_Contabil$\" ",
+                "userName": "",
+                "usesUnicode": true
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vCodConta",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vDescConta",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vCodGrupoConta",
+                    "Type": "String",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vDescGrupoConta",
+                    "Type": "String",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vTotalCC",
+                    "Type": "String",
+                    "Position": 5,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"a1e3ae17e80ba2b4a3ddb1b855430346f74b8d48\"",
+            "Name": "Alt_02_Filial",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONDELETEALLELEMENTS('02_Filial');\r\nDIMENSIONSORTORDER('02_Filial','BYINPUT','ASCENDING','BYHIERARCHY','ASCENDING');\r\nATTRDELETE('02_Filial','DESC');\r\nATTRINSERT('02_Filial','','DESC','A');\r\n#****End: Generated Statements****\r\n",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONELEMENTINSERT('02_Filial','',vCodFil,'n');\r\nDIMENSIONELEMENTINSERT('02_Filial','',vCidFil,'c');\r\nDIMENSIONELEMENTINSERT('02_Filial','',vRegFil,'c');\r\nDIMENSIONELEMENTINSERT('02_Filial','',vTotalFil,'c');\r\nDIMENSIONELEMENTCOMPONENTADD('02_Filial',vCidFil,vCodFil,1.000000);\r\nDIMENSIONELEMENTCOMPONENTADD('02_Filial',vRegFil,vCidFil,1.000000);\r\nDIMENSIONELEMENTCOMPONENTADD('02_Filial',vTotalFil,vRegFil,1.000000);\r\n#****End: Generated Statements****\r\n",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nATTRPUTS(vDescFil,'02_Filial',vCodFil,'DESC');\r\n#****End: Generated Statements****\r\n",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataSource": {
+                "Type": "ODBC",
+                "dataSourceNameForClient": "Base_List",
+                "dataSourceNameForServer": "Base_List",
+                "password": "rtqvQZmucA4+uRNXAge6hQ==",
+                "query": "Select * from \"filial$\"",
+                "userName": "",
+                "usesUnicode": true
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vCodFil",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vDescFil",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vCidFil",
+                    "Type": "String",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vRegFil",
+                    "Type": "String",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vTotalFil",
+                    "Type": "String",
+                    "Position": 5,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"95e806e7143b2a0465099b10758f5c23fb79ded9\"",
+            "Name": "Alt_04_Mes",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONDELETEALLELEMENTS('04_Mes');\r\nDIMENSIONSORTORDER('04_Mes','BYINPUT','ASCENDING','BYHIERARCHY','ASCENDING');\r\nATTRDELETE('04_Mes','PY');\r\nATTRINSERT('04_Mes','','PY','S');\r\n#****End: Generated Statements****",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONELEMENTINSERT('04_Mes','',vPeriodo,'n');\r\nDIMENSIONELEMENTINSERT('04_Mes','',vV2,'c');\r\nDIMENSIONELEMENTINSERT('04_Mes','',vAno,'c');\r\nDIMENSIONELEMENTCOMPONENTADD('04_Mes',vV2,vPeriodo,1.000000);\r\nDIMENSIONELEMENTCOMPONENTADD('04_Mes',vAno,vV2,1.000000);\r\n#****End: Generated Statements****",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nATTRPUTS(vPY,'04_Mes',vPeriodo,'PY');\r\n#****End: Generated Statements****",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataSource": {
+                "Type": "ODBC",
+                "dataSourceNameForClient": "Base_List",
+                "dataSourceNameForServer": "Base_List",
+                "password": "rtqvQZmucA4+uRNXAge6hQ==",
+                "query": "Select * from \"meses$\"",
+                "userName": "",
+                "usesUnicode": true
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vPeriodo",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vV2",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vAno",
+                    "Type": "String",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vPY",
+                    "Type": "String",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"a0c4eff151711f3990be35a90495274be5619fd2\"",
+            "Name": "Alt_05_Versao",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONDELETEALLELEMENTS('05_Versao');\r\nDIMENSIONSORTORDER('05_Versao','','','BYINPUT','ASCENDING');\r\n#****End: Generated Statements****",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONELEMENTINSERT('05_Versao','',vCenario,'s');\r\n#****End: Generated Statements****",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataSource": {
+                "Type": "ODBC",
+                "dataSourceNameForClient": "Base_List",
+                "dataSourceNameForServer": "Base_List",
+                "password": "rtqvQZmucA4+uRNXAge6hQ==",
+                "query": "Select * from \"versão$\"",
+                "userName": "",
+                "usesUnicode": true
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vCenario",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"66e90235994fd0e26d87f5042d5a8e3264fd73b3\"",
+            "Name": "Atl_02_Produto",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONDELETEALLELEMENTS('02_Produto');\r\nDIMENSIONSORTORDER('02_Produto','BYINPUT','ASCENDING','BYHIERARCHY','ASCENDING');\r\nATTRDELETE('02_Produto','DESC');\r\nATTRINSERT('02_Produto','','DESC','A');\r\n#****End: Generated Statements****\r\n",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\nDIMENSIONELEMENTINSERT('02_Produto','',vCodProd,'n');\r\nDIMENSIONELEMENTINSERT('02_Produto','',vFamProd,'c');\r\nDIMENSIONELEMENTINSERT('02_Produto','',vTotalProd,'c');\r\nDIMENSIONELEMENTCOMPONENTADD('02_Produto',vFamProd,vCodProd,1.000000);\r\nDIMENSIONELEMENTCOMPONENTADD('02_Produto',vTotalProd,vFamProd,1.000000);\r\n#****End: Generated Statements****\r\n",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nATTRPUTS(vDescProd,'02_Produto',vCodProd,'DESC');\r\n#****End: Generated Statements****\r\n",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataSource": {
+                "Type": "ODBC",
+                "dataSourceNameForClient": "Base_List",
+                "dataSourceNameForServer": "Base_List",
+                "password": "rtqvQZmucA4+uRNXAge6hQ==",
+                "query": "Select * from \"produtos$\"",
+                "userName": "",
+                "usesUnicode": true
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vCodProd",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vDescProd",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vFamProd",
+                    "Type": "String",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vTotalProd",
+                    "Type": "String",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"d0d4959510acd9fd1abf615c0498abefa30be58d\"",
+            "Name": "CRG_BDG_Despesa",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nOldCubeLogChanges = CUBEGETLOGCHANGES('BDG_Despesa');\r\nCUBESETLOGCHANGES('BDG_Despesa', 0);\r\n#****End: Generated Statements****\r\n",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\nvAno='2021';\r\n#****End: Generated Statements****\r\n",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nvAno='2021';\r\nCellPutN(CellGetN('BDG_Despesa',vVersao,vAno,vMes,vCeCo,vConta,vMedida)+vValor,'BDG_Despesa',vVersao,vAno,vMes,vCeCo,vConta,vMedida);\r\n#****End: Generated Statements****\r\n",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\nCUBESETLOGCHANGES('BDG_Despesa', OldCubeLogChanges);\r\n#****End: Generated Statements****\r\n",
+            "DataSource": {
+                "Type": "ASCII",
+                "asciiDecimalSeparator": ",",
+                "asciiDelimiterChar": "\t",
+                "asciiDelimiterType": "Character",
+                "asciiHeaderRecords": 1,
+                "asciiQuoteCharacter": "\"",
+                "asciiThousandSeparator": ".",
+                "dataSourceNameForClient": "C:\\Apps\\Planejamento\\Arquivo\\Carga_Despesas.TXT",
+                "dataSourceNameForServer": "C:\\Apps\\Planejamento\\Arquivo\\Carga_Despesas.TXT"
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vVersao",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vMes",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vCeCo",
+                    "Type": "String",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vConta",
+                    "Type": "String",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vMedida",
+                    "Type": "String",
+                    "Position": 5,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vValor",
+                    "Type": "Numeric",
+                    "Position": 6,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"935dba791328758eb270b61904d713a25af15541\"",
+            "Name": "CRG_BDG_Driver",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nOldCubeLogChanges = CUBEGETLOGCHANGES('BDG_Driver');\r\nCUBESETLOGCHANGES('BDG_Driver', 0);\r\nVIEWZEROOUT('BDG_Driver','Padrão');\r\n#****End: Generated Statements****",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nIF(VALUE_IS_STRING=1);\r\n SCellOldValue=CellGetS('BDG_Driver',vVersao,vAno,vMes,vProduto,vMetrica);\r\nELSE;\r\n NCellOldValue=CellGetN('BDG_Driver',vVersao,vAno,vMes,vProduto,vMetrica);\r\nENDIF;\r\nif (VALUE_IS_STRING=1, CellPutS(SVALUE | SCellOldValue, 'BDG_Driver', vVersao,vAno,vMes,vProduto,vMetrica), CellPutN(NVALUE+NCellOldValue, 'BDG_Driver', vVersao,vAno,vMes,vProduto,vMetrica));\r\n#****End: Generated Statements****",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\nCUBESETLOGCHANGES('BDG_Driver', OldCubeLogChanges);\r\n#****End: Generated Statements****\r\n",
+            "DataSource": {
+                "Type": "TM1CubeView",
+                "dataSourceNameForClient": "REC_Receita_Margem",
+                "dataSourceNameForServer": "REC_Receita_Margem",
+                "view": "View_BDG_Driver"
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vVersao",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vAno",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vMes",
+                    "Type": "String",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vProduto",
+                    "Type": "String",
+                    "Position": 5,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vMetrica",
+                    "Type": "String",
+                    "Position": 6,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vValor",
+                    "Type": "Numeric",
+                    "Position": 7,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"52700ff78651ef10dd4cdd41851a5aa1881818e0\"",
+            "Name": "CRG_REC_Preco_Custo_Carga",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nOldCubeLogChanges = CUBEGETLOGCHANGES('REC_Preco_Custo_Carga');\r\nCUBESETLOGCHANGES('REC_Preco_Custo_Carga', 0);\r\n#****End: Generated Statements****\r\n",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\nvProdutoCor=IF (LONG (vProduto) <6,\r\nIf (StringToNumber (vProduto) < 10, '0000' | vProduto, '000' | vProduto),vProduto);\r\n#****End: Generated Statements****\r\n",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nvProdutoCor=IF (LONG (vProduto) <6,\r\nIf (StringToNumber (vProduto) < 10, '0000' | vProduto, '000' | vProduto),vProduto);\r\nCellPutN(vCustoUnit,'REC_Preco_Custo_Carga',vVersao,vProdutoCor,'custo_unit');\r\nCellPutN(vPrecoUnit,'REC_Preco_Custo_Carga',vVersao,vProdutoCor,'preco_unit');\r\n#****End: Generated Statements****\r\n",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\nCUBESETLOGCHANGES('REC_Preco_Custo_Carga', OldCubeLogChanges);\r\n#****End: Generated Statements****",
+            "DataSource": {
+                "Type": "ASCII",
+                "asciiDecimalSeparator": ",",
+                "asciiDelimiterChar": ";",
+                "asciiDelimiterType": "Character",
+                "asciiHeaderRecords": 1,
+                "asciiQuoteCharacter": "",
+                "asciiThousandSeparator": ".",
+                "dataSourceNameForClient": "C:\\Apps\\Planejamento\\Arquivo\\Preço e Custo.csv",
+                "dataSourceNameForServer": "C:\\Apps\\Planejamento\\Arquivo\\Preço e Custo.csv"
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vProduto",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vVersao",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vCustoUnit",
+                    "Type": "Numeric",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vPrecoUnit",
+                    "Type": "Numeric",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"86546b5b40817e60e45c008a28c1b71045a7f126\"",
+            "Name": "CRG_REC_Preco_Custo_Carga_Realizado",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nOldCubeLogChanges = CUBEGETLOGCHANGES('REC_Preco_Custo_Carga');\r\nCUBESETLOGCHANGES('REC_Preco_Custo_Carga', 0);\r\n#****End: Generated Statements****\r\n",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nCellPutN(vCustoUnitRealizado,'REC_Preco_Custo_Carga',vVersao,vProduto,'custo_unit');\r\nCellPutN(vPrecoUnitRealizado,'REC_Preco_Custo_Carga',vVersao,vProduto,'preco_unit');\r\n#****End: Generated Statements****",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\nCUBESETLOGCHANGES('REC_Preco_Custo_Carga', OldCubeLogChanges);\r\n#****End: Generated Statements****",
+            "DataSource": {
+                "Type": "ASCII",
+                "asciiDecimalSeparator": ",",
+                "asciiDelimiterChar": ";",
+                "asciiDelimiterType": "Character",
+                "asciiHeaderRecords": 1,
+                "asciiQuoteCharacter": "",
+                "asciiThousandSeparator": ".",
+                "dataSourceNameForClient": "C:\\Apps\\Planejamento\\Arquivo\\Preço e Custo Realizado.csv",
+                "dataSourceNameForServer": "C:\\Apps\\Planejamento\\Arquivo\\Preço e Custo Realizado.csv"
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vProduto",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vVersao",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vCustoUnitRealizado",
+                    "Type": "Numeric",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vPrecoUnitRealizado",
+                    "Type": "Numeric",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"a7346d6444f36e7b02e54397352fc0318afc86ab\"",
+            "Name": "CRG_REC_Receita_Margem(Realizado)",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nOldCubeLogChanges = CUBEGETLOGCHANGES('REC_Receita_Margem');\r\nCUBESETLOGCHANGES('REC_Receita_Margem', 0);\r\nVIEWZEROOUT('REC_Receita_Margem','Zera_CRG_REC_Receita_Margem(Realizado)');\r\n#****End: Generated Statements****\r\n",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\nvAno='2021';\r\n#****End: Generated Statements****\r\n",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nvAno='2021';\r\nCellPutN(CellGetN('REC_Receita_Margem',vVersao,vAno,vMes,vFilial,vProduto,'vol_venda')+vVolume,'REC_Receita_Margem',vVersao,vAno,vMes,vFilial,vProduto,'vol_venda');\r\nCellPutN(CellGetN('REC_Receita_Margem',vVersao,vAno,vMes,vFilial,vProduto,'receita')+vReceita,'REC_Receita_Margem',vVersao,vAno,vMes,vFilial,vProduto,'receita');\r\nCellPutN(CellGetN('REC_Receita_Margem',vVersao,vAno,vMes,vFilial,vProduto,'custo')+vCusto,'REC_Receita_Margem',vVersao,vAno,vMes,vFilial,vProduto,'custo');\r\nCellPutN(CellGetN('REC_Receita_Margem',vVersao,vAno,vMes,vFilial,vProduto,'margem')+vMargem,'REC_Receita_Margem',vVersao,vAno,vMes,vFilial,vProduto,'margem');\r\n#****End: Generated Statements****\r\n\r\n",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\nCUBESETLOGCHANGES('REC_Receita_Margem', OldCubeLogChanges);\r\n#****End: Generated Statements****\r\n",
+            "DataSource": {
+                "Type": "ASCII",
+                "asciiDecimalSeparator": ",",
+                "asciiDelimiterChar": "\t",
+                "asciiDelimiterType": "Character",
+                "asciiHeaderRecords": 1,
+                "asciiQuoteCharacter": "",
+                "asciiThousandSeparator": ".",
+                "dataSourceNameForClient": "C:\\Apps\\Planejamento\\Arquivo\\Volume Vendas Realizado.txt",
+                "dataSourceNameForServer": "C:\\Apps\\Planejamento\\Arquivo\\Volume Vendas Realizado.txt"
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vFilial",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vProduto",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vVersao",
+                    "Type": "String",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vMes",
+                    "Type": "String",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vVolume",
+                    "Type": "Numeric",
+                    "Position": 5,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vReceita",
+                    "Type": "Numeric",
+                    "Position": 6,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vCusto",
+                    "Type": "Numeric",
+                    "Position": 7,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vMargem",
+                    "Type": "Numeric",
+                    "Position": 8,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"b5f3704c4117b921f2e8146eddf0b0763b3e1692\"",
+            "Name": "CRG_REC_Receita_Margem(Volume)",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\nOldCubeLogChanges = CUBEGETLOGCHANGES('REC_Receita_Margem');\r\nCUBESETLOGCHANGES('REC_Receita_Margem', 0);\r\nVIEWZEROOUT('REC_Receita_Margem','Zera_CRG_REC_Receita_Margem(Volume)');\r\n#****End: Generated Statements****\r\n",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\nvAno='2021';\r\nvMetrica='vol_venda';\r\n#****End: Generated Statements****\r\n",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\nvAno='2021';\r\nvMetrica='vol_venda';\r\nCellPutN(CellGetN('REC_Receita_Margem',vVersao,vAno,vMes,vFilial,vProduto,vMetrica)+vVolume,'REC_Receita_Margem',vVersao,vAno,vMes,vFilial,vProduto,vMetrica);\r\n#****End: Generated Statements****\r\n",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\nCUBESETLOGCHANGES('REC_Receita_Margem', OldCubeLogChanges);\r\n#****End: Generated Statements****\r\n",
+            "DataSource": {
+                "Type": "ASCII",
+                "asciiDecimalSeparator": ",",
+                "asciiDelimiterChar": "\t",
+                "asciiDelimiterType": "Character",
+                "asciiHeaderRecords": 1,
+                "asciiQuoteCharacter": "",
+                "asciiThousandSeparator": ".",
+                "dataSourceNameForClient": "C:\\Apps\\Planejamento\\Arquivo\\Volume Vendas.txt",
+                "dataSourceNameForServer": "C:\\Apps\\Planejamento\\Arquivo\\Volume Vendas.txt"
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vFilial",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vProduto",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vVersao",
+                    "Type": "String",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vMes",
+                    "Type": "String",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vVolume",
+                    "Type": "Numeric",
+                    "Position": 5,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"cae9a135d32b0fd240a4bcb616cfc0dc9dc87275\"",
+            "Name": "EXP_REC_Receita_Margem",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****\r\n\r\ncFile = 'Arc_Prc_Texto.txt';\r\ncCharSet = 'TM1CS_UTF8';\r\n\r\n# Qualificador de String - Quote Char\r\nDatasourceASCIIQuoteCharacter='';\r\n\r\n# Separador de milhar\r\n\r\nDatasourceASCIIThousandSeparator='.';\r\n\r\n# Delimitador do arquivo ou Tabulação\r\nDatasourceASCIIDelimiter=';';\r\n\r\n# Separador de decimal\r\nDatasourceASCIIDecimalSeparator=',';\r\n\r\nSetOutputEscapeDoubleQuote(cFile, 0);\r\n\r\nvIndice = 0;",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****\r\n\r\nvReceita = CellGetN ('REC_Receita_Margem',vVersao, vAno, vMes, vFilial, vProduto, 'receita');\r\nvCusto = CellGetN ('REC_Receita_Margem',vVersao, vAno, vMes, vFilial, vProduto, 'custo');\r\nvMargem = CellGetN ('REC_Receita_Margem',vVersao, vAno, vMes, vFilial, vProduto, 'margem');\r\n\r\nSetOutputCharacterSet(cFile, cCharSet);\r\nSetInputCharacterSet (cCharSet);\r\n\r\nif(vIndice = 0);\r\n\r\n    TextOutPut(cFile, 'Versao', 'Ano', 'Mes', 'Filial', 'Produto', 'Metrica', 'Volume', 'Receita', 'Custo', 'Margem');\r\n\r\n    vIndice = 1;\r\n\r\nendif;\r\n\r\nTextOutPut (cFile, vVersao, vAno, vMes, vFilial, vProduto, vMetrica, \r\nNumberToString (vValor), \r\nNumberToString (vReceita), \r\nNumberToString (vCusto), \r\nNumberToString (vMargem));",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataSource": {
+                "Type": "TM1CubeView",
+                "dataSourceNameForClient": "REC_Receita_Margem",
+                "dataSourceNameForServer": "REC_Receita_Margem",
+                "view": "SYS_EXP_REC_Receita_Margem"
+            },
+            "Parameters": [],
+            "Variables": [
+                {
+                    "Name": "vVersao",
+                    "Type": "String",
+                    "Position": 1,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vAno",
+                    "Type": "String",
+                    "Position": 2,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vMes",
+                    "Type": "String",
+                    "Position": 3,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vFilial",
+                    "Type": "String",
+                    "Position": 4,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vProduto",
+                    "Type": "String",
+                    "Position": 5,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vMetrica",
+                    "Type": "String",
+                    "Position": 6,
+                    "StartByte": 0,
+                    "EndByte": 0
+                },
+                {
+                    "Name": "vValor",
+                    "Type": "Numeric",
+                    "Position": 7,
+                    "StartByte": 0,
+                    "EndByte": 0
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"f829ac334c5f955084254ec164488250b7788af9\"",
+            "Name": "SYS_Save_Data_All",
+            "PrologProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "MetadataProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "DataProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****",
+            "EpilogProcedure": "\r\n#****Begin: Generated Statements***\r\n#****End: Generated Statements****\r\n\r\nSAVEDATAALL;",
+            "DataSource": {
+                "Type": "None"
+            },
+            "Parameters": [],
+            "Variables": []
+        }
+    ]
+}
