@@ -43,33 +43,32 @@ function createTreeViewNodes(jsonContent) {
 }
 class TreeDataProvider {
     extensionPath;
-    constructor(extensionPath) {
+    fileName;
+    constructor(extensionPath, fileName) {
         this.extensionPath = extensionPath;
+        this.fileName = fileName;
     }
     getTreeItem(element) {
         return element;
     }
     getChildren(element) {
         if (!element) {
-            // Carrega o conteúdo JSON dos arquivos
-            const jsonFiles = ['processes.json', 'cubes.json'];
-            const jsonContents = jsonFiles.map((fileName) => {
-                const filePath = path.join(this.extensionPath, 'src', 'assets', 'examples', fileName);
-                return loadJSON(filePath);
-            });
+            // Carrega o conteúdo JSON do arquivo
+            const filePath = path.join(this.extensionPath, 'src', 'assets', 'examples', this.fileName);
+            const jsonContent = loadJSON(filePath);
             // Cria os nós da tree view com base nos nomes dos processos no JSON
-            const treeNodes = jsonContents.flatMap((jsonContent) => {
-                return createTreeViewNodes(jsonContent);
-            });
+            const treeNodes = createTreeViewNodes(jsonContent);
             return Promise.resolve(treeNodes);
         }
         return Promise.resolve([]);
     }
 }
 function activate(context) {
-    const treeDataProvider = new TreeDataProvider(context.extensionPath);
-    vscode.window.createTreeView('package-processes', { treeDataProvider });
-    // Registrar comandos para manipular a tree view, se necessário
+    const processesDataProvider = new TreeDataProvider(context.extensionPath, 'processes.json');
+    const cubesDataProvider = new TreeDataProvider(context.extensionPath, 'cubes.json');
+    vscode.window.createTreeView('package-processes', { treeDataProvider: processesDataProvider });
+    vscode.window.createTreeView('package-cubes', { treeDataProvider: cubesDataProvider });
+    // Registrar comandos para manipular as tree views, se necessário
 }
 exports.activate = activate;
 function deactivate() { }

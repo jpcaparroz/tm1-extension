@@ -20,7 +20,7 @@ function createTreeViewNodes(jsonContent: any): vscode.TreeItem[] {
 }
 
 class TreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
-	constructor(private readonly extensionPath: string) { }
+	constructor(private readonly extensionPath: string, private readonly fileName: string) { }
 
 	getTreeItem(element: vscode.TreeItem): vscode.TreeItem {
 		return element;
@@ -28,17 +28,12 @@ class TreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
 	getChildren(element?: vscode.TreeItem): Thenable<vscode.TreeItem[]> {
 		if (!element) {
-			// Carrega o conteúdo JSON dos arquivos
-			const jsonFiles = ['processes.json', 'cubes.json'];
-			const jsonContents = jsonFiles.map((fileName) => {
-				const filePath = path.join(this.extensionPath, 'src', 'assets', 'examples', fileName);
-				return loadJSON(filePath);
-			});
+			// Carrega o conteúdo JSON do arquivo
+			const filePath = path.join(this.extensionPath, 'src', 'assets', 'examples', this.fileName);
+			const jsonContent = loadJSON(filePath);
 
 			// Cria os nós da tree view com base nos nomes dos processos no JSON
-			const treeNodes = jsonContents.flatMap((jsonContent) => {
-				return createTreeViewNodes(jsonContent);
-			});
+			const treeNodes = createTreeViewNodes(jsonContent);
 
 			return Promise.resolve(treeNodes);
 		}
@@ -47,10 +42,13 @@ class TreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-	const treeDataProvider = new TreeDataProvider(context.extensionPath);
-	vscode.window.createTreeView('package-processes', { treeDataProvider });
+	const processesDataProvider = new TreeDataProvider(context.extensionPath, 'processes.json');
+	const cubesDataProvider = new TreeDataProvider(context.extensionPath, 'cubes.json');
 
-	// Registrar comandos para manipular a tree view, se necessário
+	vscode.window.createTreeView('package-processes', { treeDataProvider: processesDataProvider });
+	vscode.window.createTreeView('package-cubes', { treeDataProvider: cubesDataProvider });
+
+	// Registrar comandos para manipular as tree views, se necessário
 }
 
 export function deactivate() { }
