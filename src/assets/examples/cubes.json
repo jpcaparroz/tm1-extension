@@ -1,0 +1,894 @@
+{
+    "@odata.context": "$metadata#Cubes(Dimensions(Name))",
+    "value": [
+        {
+            "@odata.etag": "W/\"8b5e567126ad709031663cca7173891e0e7262eb\"",
+            "Name": "BDG_Despesa",
+            "Rules": "FEEDERS;\n\n['valor'] =>\nDB('BDG_Despesa_Rateada',!05_Versao,!04_Ano,!04_Mes,!02_Centro_Custo,'TOTAL DESPESAS', 'TOTAL PRODUCTS','valor');",
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "BDG_Despesa"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"bae000c1f457b4b2ccf961a8d7a6a52ab290b514\"",
+                    "Name": "05_Versao"
+                },
+                {
+                    "@odata.etag": "W/\"9862b011346ddd60798174590a02cbbc401c705f\"",
+                    "Name": "04_Ano"
+                },
+                {
+                    "@odata.etag": "W/\"4eae5dfe92890415f23dea935f1f6edb84355c83\"",
+                    "Name": "04_Mes"
+                },
+                {
+                    "@odata.etag": "W/\"d247ca60bba71c26311294caceb5386b043e59b7\"",
+                    "Name": "02_Centro_Custo"
+                },
+                {
+                    "@odata.etag": "W/\"5c3f4496b8f2c9444db9e8419baff1965c0b8327\"",
+                    "Name": "02_Conta_Contabil"
+                },
+                {
+                    "@odata.etag": "W/\"49f026c0028bb2fbdb47dbf42d472802c07d40c0\"",
+                    "Name": "01_Despesa"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"66b64ac8cb4ba33ccdbb364cefc76265d9434f31\"",
+            "Name": "BDG_Despesa_Rateada",
+            "Rules": "SKIPCHECK;\n\n['valor'] = N:\nDB('BDG_Driver',!05_Versao,!04_Ano,!04_Mes,!02_Produto,DB('BDG_Parametro_Driver',!05_Versao,!04_Ano,!02_Centro_Custo,'driver'))\n\\\nDB('BDG_Driver',!05_Versao,!04_Ano,!04_Mes,'TOTAL PRODUCTS',DB('BDG_Parametro_Driver',!05_Versao,!04_Ano,!02_Centro_Custo,'driver'))\n*\nDB('BDG_Despesa',!05_Versao,!04_Ano,!04_Mes,!02_Centro_Custo,'TOTAL DESPESAS',!01_Despesa_Rateada)\n;",
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "BDG_Despesa_Rateada"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"bae000c1f457b4b2ccf961a8d7a6a52ab290b514\"",
+                    "Name": "05_Versao"
+                },
+                {
+                    "@odata.etag": "W/\"9862b011346ddd60798174590a02cbbc401c705f\"",
+                    "Name": "04_Ano"
+                },
+                {
+                    "@odata.etag": "W/\"4eae5dfe92890415f23dea935f1f6edb84355c83\"",
+                    "Name": "04_Mes"
+                },
+                {
+                    "@odata.etag": "W/\"d247ca60bba71c26311294caceb5386b043e59b7\"",
+                    "Name": "02_Centro_Custo"
+                },
+                {
+                    "@odata.etag": "W/\"df97812705487353ddf2aeafa237b589d31f7d61\"",
+                    "Name": "02_Produto"
+                },
+                {
+                    "@odata.etag": "W/\"0fca1cef5f5b969d16bb3f0aa9399009194340c5\"",
+                    "Name": "01_Despesa_Rateada"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"c94067051e183ed8787fddf814b108b086eff563\"",
+            "Name": "BDG_Driver",
+            "Rules": "FEEDERS;\n\n['vol_venda'] => DB('BDG_Despesa_Rateada',!05_Versao,!04_Ano,!04_Mes,'TOTAL_EMPRESA',!02_Produto,'valor');",
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "BDG_Driver"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"bae000c1f457b4b2ccf961a8d7a6a52ab290b514\"",
+                    "Name": "05_Versao"
+                },
+                {
+                    "@odata.etag": "W/\"9862b011346ddd60798174590a02cbbc401c705f\"",
+                    "Name": "04_Ano"
+                },
+                {
+                    "@odata.etag": "W/\"4eae5dfe92890415f23dea935f1f6edb84355c83\"",
+                    "Name": "04_Mes"
+                },
+                {
+                    "@odata.etag": "W/\"df97812705487353ddf2aeafa237b589d31f7d61\"",
+                    "Name": "02_Produto"
+                },
+                {
+                    "@odata.etag": "W/\"eb2222e8571accb89620ecd8b631071ecb5abc86\"",
+                    "Name": "01_Driver"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"070a21ca533e59060ab88a50e83987815a3b8e5a\"",
+            "Name": "BDG_Parametro_Driver",
+            "Rules": "FEEDERS;",
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "BDG_Parametro_Driver"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"bae000c1f457b4b2ccf961a8d7a6a52ab290b514\"",
+                    "Name": "05_Versao"
+                },
+                {
+                    "@odata.etag": "W/\"9862b011346ddd60798174590a02cbbc401c705f\"",
+                    "Name": "04_Ano"
+                },
+                {
+                    "@odata.etag": "W/\"d247ca60bba71c26311294caceb5386b043e59b7\"",
+                    "Name": "02_Centro_Custo"
+                },
+                {
+                    "@odata.etag": "W/\"7324b5a9f2f7f5c9b55bb736bf5889cdb710da6e\"",
+                    "Name": "01_Parametro_Driver"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"375f9609c9962cce0ad6ccaaabd80362ecd2b07f\"",
+            "Name": "REC_Preco_Custo_Carga",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "REC_Preco_Custo_Carga"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"bae000c1f457b4b2ccf961a8d7a6a52ab290b514\"",
+                    "Name": "05_Versao"
+                },
+                {
+                    "@odata.etag": "W/\"df97812705487353ddf2aeafa237b589d31f7d61\"",
+                    "Name": "02_Produto"
+                },
+                {
+                    "@odata.etag": "W/\"e4b586c8fbb0c7eb1dca0813c521ef61d1758397\"",
+                    "Name": "01_REC_Preco_Custo_Carga"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"a274c681a299a471fa9bfddda0a0d572dc8ec944\"",
+            "Name": "REC_Receita_Margem",
+            "Rules": "['Realizado','perc_margem'] = ['margem'] \\ ['receita'];\n\n['Realizado']=STET;\n\n['var']=N: ['Realizado'] - ['Orçado'];\n\n['preco_unit','Jan','2021']=N:DB('REC_Preco_Custo_Carga',!05_Versao,!02_Produto,'preco_unit');C:0;\n\n['preco_unit','Jan']=N:DB('REC_Receita_Margem',!05_Versao,ATTRS('04_Ano',!04_Ano,'PY'),ATTRS ('04_Mes',!04_Mes,'PY'),!02_Filial,!02_Produto,!01_Receita_Margem) *\n\t\t(1+ ['perc_reaj_preco']);C:0;\n\n['preco_unit']=N:DB('REC_Receita_Margem',!05_Versao,!04_Ano,ATTRS ('04_Mes',!04_Mes,'PY'),!02_Filial,!02_Produto,!01_Receita_Margem) *\n\t\t(1+ ['perc_reaj_preco']);C:0;\n\n['receita']=N:['preco_unit']*['vol_venda'];\n\n['custo']=N:DB('REC_Preco_Custo_Carga',!05_Versao,!02_Produto,'custo_unit')*['vol_venda'];\n\n['margem']=N: ['receita'] - ['custo'];\n\n['perc_margem']=N: ['custo'] \\ ['receita'];\n\nFEEDERS;\n\n['vol_venda','Orçado']=>['receita'],['preco_unit'],['custo'],['margem'],['perc_margem'],['var','receita'],['var','preco_unit'],['var','custo'],['var','margem'],['var','perc_margem'];\n\n\n\n\n",
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "REC_Receita_Margem"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"bae000c1f457b4b2ccf961a8d7a6a52ab290b514\"",
+                    "Name": "05_Versao"
+                },
+                {
+                    "@odata.etag": "W/\"9862b011346ddd60798174590a02cbbc401c705f\"",
+                    "Name": "04_Ano"
+                },
+                {
+                    "@odata.etag": "W/\"4eae5dfe92890415f23dea935f1f6edb84355c83\"",
+                    "Name": "04_Mes"
+                },
+                {
+                    "@odata.etag": "W/\"1aef86e5c9ef6a289179cfeed785f8af6aed600b\"",
+                    "Name": "02_Filial"
+                },
+                {
+                    "@odata.etag": "W/\"df97812705487353ddf2aeafa237b589d31f7d61\"",
+                    "Name": "02_Produto"
+                },
+                {
+                    "@odata.etag": "W/\"bca28a09ce9699f0c8a563183656647ecdf0e1ed\"",
+                    "Name": "01_Receita_Margem"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"c78296aa3aa7f4083d9c41486953aded522a1f26\"",
+            "Name": "}Capabilities",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}Capabilities"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"79acbff551dd75483454ef5a0e8ac88fa517c2d8\"",
+                    "Name": "}Features"
+                },
+                {
+                    "@odata.etag": "W/\"aba1c2df7cbd6c9f1bf8493fcf0db409e6c8d63b\"",
+                    "Name": "}Permissions"
+                },
+                {
+                    "@odata.etag": "W/\"6eff75dac41bd4dfef05207aa1b1dc45cab32139\"",
+                    "Name": "}Groups"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"c04038a9efd402b01f5733a5df5e0248d29a1ad8\"",
+            "Name": "}ClientCAMAssociatedGroups",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ClientCAMAssociatedGroups"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"28af8853ac7d066d956f1cda61a2dfdbd4a5e2bd\"",
+                    "Name": "}CAMAssociatedGroups"
+                },
+                {
+                    "@odata.etag": "W/\"6eff75dac41bd4dfef05207aa1b1dc45cab32139\"",
+                    "Name": "}Groups"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"58cb004c78ad7dd27552600c7c1d525e5797cd1d\"",
+            "Name": "}ClientGroups",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}ClientGroups"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"a9833b48bb80dc9ce07861691f6e00c6a8037657\"",
+                    "Name": "}Clients"
+                },
+                {
+                    "@odata.etag": "W/\"6eff75dac41bd4dfef05207aa1b1dc45cab32139\"",
+                    "Name": "}Groups"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"cdd8b8ab7d8c4ad5c8c0a829f5aa80c2ae7d5fed\"",
+            "Name": "}ClientProperties",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ClientProperties"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"a9833b48bb80dc9ce07861691f6e00c6a8037657\"",
+                    "Name": "}Clients"
+                },
+                {
+                    "@odata.etag": "W/\"22372d7fb60f7fd185a01b8ba91a73d7345ea60a\"",
+                    "Name": "}ClientProperties"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"f161352bf65f5538c0f15d5951d7f07b930d1094\"",
+            "Name": "}ClientSettings",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ClientSettings"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"a9833b48bb80dc9ce07861691f6e00c6a8037657\"",
+                    "Name": "}Clients"
+                },
+                {
+                    "@odata.etag": "W/\"03a37ac11ae4c278c84b68b98ca045e267d9452b\"",
+                    "Name": "}ClientSettings"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"2a7bcf3804dc71895222bdd5f95e64444ce51654\"",
+            "Name": "}CubeProperties",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.937Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}CubeProperties"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"19528d2ae94f2f761756e3d2e968cd1983f0b123\"",
+                    "Name": "}Cubes"
+                },
+                {
+                    "@odata.etag": "W/\"31564a356d7a7ec5fff87a04deb1220bfe2e3a29\"",
+                    "Name": "}CubeProperties"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"818c3ca96b188792670c6a0993baa894e345a689\"",
+            "Name": "}CubeSecurityProperties",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.937Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}CubeSecurityProperties"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"19528d2ae94f2f761756e3d2e968cd1983f0b123\"",
+                    "Name": "}Cubes"
+                },
+                {
+                    "@odata.etag": "W/\"fde47a87ccf25f7c1cbdb2cea7a133b254c43139\"",
+                    "Name": "}CubeSecurityProperties"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"3d4bce24d3e7869a1459fd4cd1bfe131f5ad2a81\"",
+            "Name": "}DimensionProperties",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.937Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}DimensionProperties"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"0157b5f11a63fe09566cc6522771efc34ca944f6\"",
+                    "Name": "}Dimensions"
+                },
+                {
+                    "@odata.etag": "W/\"e1d8daad8e9719c1e4c25cc92fd48ceb573abbd4\"",
+                    "Name": "}DimensionProperties"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"9d93f8113d6ac60e97d0769efd6f167a812f620b\"",
+            "Name": "}ElementAttributes_01_Despesa",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_01_Despesa"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"49f026c0028bb2fbdb47dbf42d472802c07d40c0\"",
+                    "Name": "01_Despesa"
+                },
+                {
+                    "@odata.etag": "W/\"68e433dbe3ab15cb2dbedb026cde624784467ce3\"",
+                    "Name": "}ElementAttributes_01_Despesa"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"5c5a56a1d11d0a2e27797f751519fa1fdaa28e16\"",
+            "Name": "}ElementAttributes_01_Despesa_Rateada",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_01_Despesa_Rateada"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"0fca1cef5f5b969d16bb3f0aa9399009194340c5\"",
+                    "Name": "01_Despesa_Rateada"
+                },
+                {
+                    "@odata.etag": "W/\"efb66ec8587008dff5d211e0e7f672e834b3b295\"",
+                    "Name": "}ElementAttributes_01_Despesa_Rateada"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"ac9cf1d82666b68d9f7d8761209b8690836e5f74\"",
+            "Name": "}ElementAttributes_01_Driver",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_01_Driver"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"eb2222e8571accb89620ecd8b631071ecb5abc86\"",
+                    "Name": "01_Driver"
+                },
+                {
+                    "@odata.etag": "W/\"5319c7a9cca391f172c82bdedbb157fc4993f75a\"",
+                    "Name": "}ElementAttributes_01_Driver"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"a0a82ebdd4a855c999b56ce855a244a672dcafff\"",
+            "Name": "}ElementAttributes_01_Parametro_Driver",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_01_Parametro_Driver"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"7324b5a9f2f7f5c9b55bb736bf5889cdb710da6e\"",
+                    "Name": "01_Parametro_Driver"
+                },
+                {
+                    "@odata.etag": "W/\"c81b659ca29de31a2b7e91fe7347b4ce92c831e7\"",
+                    "Name": "}ElementAttributes_01_Parametro_Driver"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"2f304d5be2a9390013eeb52a5b5cb029d0978a51\"",
+            "Name": "}ElementAttributes_01_REC_Preco_Custo_Carga",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_01_REC_Preco_Custo_Carga"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"e4b586c8fbb0c7eb1dca0813c521ef61d1758397\"",
+                    "Name": "01_REC_Preco_Custo_Carga"
+                },
+                {
+                    "@odata.etag": "W/\"6cd4e2186a5940e7944ecbe34271168d00014c71\"",
+                    "Name": "}ElementAttributes_01_REC_Preco_Custo_Carga"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"e9c4ee8840031c3747d4e58db8670528d7878149\"",
+            "Name": "}ElementAttributes_01_Receita_Margem",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_01_Receita_Margem"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"bca28a09ce9699f0c8a563183656647ecdf0e1ed\"",
+                    "Name": "01_Receita_Margem"
+                },
+                {
+                    "@odata.etag": "W/\"1a62b4f4f28e02280507a5fea4bff163029ff719\"",
+                    "Name": "}ElementAttributes_01_Receita_Margem"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"c49be16104f3ad7540f1766a626c4c0086c2d796\"",
+            "Name": "}ElementAttributes_02_Centro_Custo",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_02_Centro_Custo"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"d247ca60bba71c26311294caceb5386b043e59b7\"",
+                    "Name": "02_Centro_Custo"
+                },
+                {
+                    "@odata.etag": "W/\"0e8bd537cdd556630cf4ff5c5e9f979b16371ff1\"",
+                    "Name": "}ElementAttributes_02_Centro_Custo"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"0c7acff6f89ba5f635c6064d60fcd3fb26a6db6b\"",
+            "Name": "}ElementAttributes_02_Conta_Contabil",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_02_Conta_Contabil"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"5c3f4496b8f2c9444db9e8419baff1965c0b8327\"",
+                    "Name": "02_Conta_Contabil"
+                },
+                {
+                    "@odata.etag": "W/\"22741656939842068f3872ff8f72f54a594a3cd4\"",
+                    "Name": "}ElementAttributes_02_Conta_Contabil"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"f27cac1218484bcb9d75a88232c544bfb19fa9a3\"",
+            "Name": "}ElementAttributes_02_Filial",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_02_Filial"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"1aef86e5c9ef6a289179cfeed785f8af6aed600b\"",
+                    "Name": "02_Filial"
+                },
+                {
+                    "@odata.etag": "W/\"4cf93fb9880dfabbb3adc6fb6db92895e87605f3\"",
+                    "Name": "}ElementAttributes_02_Filial"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"d672cba6873194e0f31a63b645ad5a840c5fbbb3\"",
+            "Name": "}ElementAttributes_02_Produto",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_02_Produto"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"df97812705487353ddf2aeafa237b589d31f7d61\"",
+                    "Name": "02_Produto"
+                },
+                {
+                    "@odata.etag": "W/\"12e4d22d46d8dad5c24fbc201d9ec83036ef8986\"",
+                    "Name": "}ElementAttributes_02_Produto"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"cb092fd5afee72a9ebbff7cd1f863d08e6e715ca\"",
+            "Name": "}ElementAttributes_04_Ano",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_04_Ano"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"9862b011346ddd60798174590a02cbbc401c705f\"",
+                    "Name": "04_Ano"
+                },
+                {
+                    "@odata.etag": "W/\"85d66baf8a15c69b4719902d58bcdf13fff0237f\"",
+                    "Name": "}ElementAttributes_04_Ano"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"51b552d234204ad2ede3f455ec58883ef62ce236\"",
+            "Name": "}ElementAttributes_04_Mes",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_04_Mes"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"4eae5dfe92890415f23dea935f1f6edb84355c83\"",
+                    "Name": "04_Mes"
+                },
+                {
+                    "@odata.etag": "W/\"8a07b921363daf66471a6a6ae404651c3cb568eb\"",
+                    "Name": "}ElementAttributes_04_Mes"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"748add8064132673411b1487f07b6c3e3436045d\"",
+            "Name": "}ElementAttributes_}Clients",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_}Clients"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"a9833b48bb80dc9ce07861691f6e00c6a8037657\"",
+                    "Name": "}Clients"
+                },
+                {
+                    "@odata.etag": "W/\"7af5855d74c7e1e5a6335309125cad889a06591e\"",
+                    "Name": "}ElementAttributes_}Clients"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"d00b7f27256c942edda2d5ae87a5968201442ea8\"",
+            "Name": "}ElementAttributes_}Cultures",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.984Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_}Cultures"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"f05e984dd15a89223909e48a521f99012bf7db4f\"",
+                    "Name": "}Cultures"
+                },
+                {
+                    "@odata.etag": "W/\"b8224243144f78151699cae0be3f6fdd83cc0c18\"",
+                    "Name": "}ElementAttributes_}Cultures"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"0ec37ec6de83fe1e3939766876eac5afb9b01ddf\"",
+            "Name": "}ElementAttributes_}Groups",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.921Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}ElementAttributes_}Groups"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"6eff75dac41bd4dfef05207aa1b1dc45cab32139\"",
+                    "Name": "}Groups"
+                },
+                {
+                    "@odata.etag": "W/\"ea3c4628fd7eb383df2febd684c1f1802b2ae5bf\"",
+                    "Name": "}ElementAttributes_}Groups"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"ef632290ee4f46327a7d0faac6c032378101477f\"",
+            "Name": "}HierarchyProperties",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.937Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}HierarchyProperties"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"0157b5f11a63fe09566cc6522771efc34ca944f6\"",
+                    "Name": "}Dimensions"
+                },
+                {
+                    "@odata.etag": "W/\"f283ea6caa23f4b87624737b7a9f49ffd524e038\"",
+                    "Name": "}Hierarchies"
+                },
+                {
+                    "@odata.etag": "W/\"3a41774d92eeb9fa545f30cb9c3fa490a0436f7c\"",
+                    "Name": "}HierarchyProperties"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"b64b34db6b0bccc0a3efb43d0d0fb014e40dccb7\"",
+            "Name": "}StatsByChore",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.937Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}StatsByChore"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"e4da1533ec3b03ae9f31f03786edc7b8c0c9a156\"",
+                    "Name": "}TimeIntervals"
+                },
+                {
+                    "@odata.etag": "W/\"9ff858289b2c715fcc53c94b50d4e1362442e58b\"",
+                    "Name": "}Chores"
+                },
+                {
+                    "@odata.etag": "W/\"b611e6a4ee9cdeed65800dcfe5a73c45907e61ea\"",
+                    "Name": "}StatsByProcess"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"1ad42fd9f51f87bd309c86a8dd5089364bbbfe58\"",
+            "Name": "}StatsByClient",
+            "Rules": "skipcheck;\n['Bytes/Message']=['Message Bytes']/['Message Count'];\nfeeders;\n['Message Bytes']=>['Bytes/Message'];",
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.937Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}StatsByClient"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"467058b31e88a1cd4db1db579435a88867ad0ecc\"",
+                    "Name": "}StatsStatsByClient"
+                },
+                {
+                    "@odata.etag": "W/\"972e83e4d9c4ea2857996bc419e2a853fee7cc00\"",
+                    "Name": "}PerfClients"
+                },
+                {
+                    "@odata.etag": "W/\"e4da1533ec3b03ae9f31f03786edc7b8c0c9a156\"",
+                    "Name": "}TimeIntervals"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"1db74d1e7956e5f896cc6754bb2bda796eecf09c\"",
+            "Name": "}StatsByCube",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.937Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}StatsByCube"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"ec96ccf3881b08c664427d7273794c3fa1850c3a\"",
+                    "Name": "}StatsStatsByCube"
+                },
+                {
+                    "@odata.etag": "W/\"072b7bd5d7a67ebcf5ced93e001edcba13da3aee\"",
+                    "Name": "}PerfCubes"
+                },
+                {
+                    "@odata.etag": "W/\"e4da1533ec3b03ae9f31f03786edc7b8c0c9a156\"",
+                    "Name": "}TimeIntervals"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"30c42489776bc0da0a780397d2a6f878c052cc3c\"",
+            "Name": "}StatsByCubeByClient",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.937Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}StatsByCubeByClient"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"972e83e4d9c4ea2857996bc419e2a853fee7cc00\"",
+                    "Name": "}PerfClients"
+                },
+                {
+                    "@odata.etag": "W/\"072b7bd5d7a67ebcf5ced93e001edcba13da3aee\"",
+                    "Name": "}PerfCubes"
+                },
+                {
+                    "@odata.etag": "W/\"2cd5843eab866c44118d6116d0552bcba56327ee\"",
+                    "Name": "}Cube Functions"
+                },
+                {
+                    "@odata.etag": "W/\"48fd24e1904164ce65efb71d82fbf00318047203\"",
+                    "Name": "}StatsStatsByCubeByClient"
+                },
+                {
+                    "@odata.etag": "W/\"e4da1533ec3b03ae9f31f03786edc7b8c0c9a156\"",
+                    "Name": "}TimeIntervals"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"01b201646fbcd5b4d5b54feb9ab0f9250ce6072a\"",
+            "Name": "}StatsByProcess",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.937Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}StatsByProcess"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"e4da1533ec3b03ae9f31f03786edc7b8c0c9a156\"",
+                    "Name": "}TimeIntervals"
+                },
+                {
+                    "@odata.etag": "W/\"1795482774d6b8b7cd73b946b63bb9d8490d5fa1\"",
+                    "Name": "}Processes"
+                },
+                {
+                    "@odata.etag": "W/\"b611e6a4ee9cdeed65800dcfe5a73c45907e61ea\"",
+                    "Name": "}StatsByProcess"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"31fb9f38feb65b1accc25e0538d508d715d951bb\"",
+            "Name": "}StatsByRule",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.937Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.984Z",
+            "Attributes": {
+                "Caption": "}StatsByRule"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"19528d2ae94f2f761756e3d2e968cd1983f0b123\"",
+                    "Name": "}Cubes"
+                },
+                {
+                    "@odata.etag": "W/\"bda55a5e6b544ba4357dca751d9ceace00671553\"",
+                    "Name": "}LineNumber"
+                },
+                {
+                    "@odata.etag": "W/\"b75fcf29e545175fef5e1d5d0578c6e98fdd3761\"",
+                    "Name": "}RuleStats"
+                }
+            ]
+        },
+        {
+            "@odata.etag": "W/\"02fafc57e7777d371f1d677fb3a4a929818d5355\"",
+            "Name": "}StatsForServer",
+            "Rules": null,
+            "DrillthroughRules": null,
+            "LastSchemaUpdate": "2024-03-14T21:26:26.640Z",
+            "LastDataUpdate": "2024-03-14T21:26:26.921Z",
+            "Attributes": {
+                "Caption": "}StatsForServer"
+            },
+            "Dimensions": [
+                {
+                    "@odata.etag": "W/\"9980c58116b7c228234005efd50a1363e58a96e0\"",
+                    "Name": "}StatsStatsForServer"
+                },
+                {
+                    "@odata.etag": "W/\"e4da1533ec3b03ae9f31f03786edc7b8c0c9a156\"",
+                    "Name": "}TimeIntervals"
+                }
+            ]
+        }
+    ]
+}

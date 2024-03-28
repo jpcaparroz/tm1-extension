@@ -1,39 +1,56 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import fs from 'fs';
+import * as path from 'path';
+import * as fs from 'fs';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
-	console.log(__dirname);
-	const filePath = 'e:/Filipe/prog/repo/tm1-extension/src/processes.json';
-	// const filePath = '../../src/processes.json';
-	
-	function readJSONFile(filePath: string): any {
-		const data = fs.readFileSync(filePath, 'utf8');
-		return JSON.parse(data);
-	}
-	
-	const processList = readJSONFile(filePath);
-
-	let processes = processList.value.map((process:object) => {
-		return process
-	})
-	let processesNames = processList.value.map((process:object) => {
-		console.log(process.Name);
-		return process
-	})
-
-	// console.log(processes);
-	
-	
-	let disposable = vscode.commands.registerCommand('tm1-extension.tm1Test', () => {
-		console.log('teste');
-	});
-
-	context.subscriptions.push(disposable);
+// Função para carregar e analisar o arquivo JSON
+function loadJSON(filePath: string) {
+	const data = fs.readFileSync(filePath, 'utf8');
+	return JSON.parse(data);
 }
 
-// This method is called when your extension is deactivated
+// Função para criar os nós da tree view a partir dos nomes dos processos no JSON
+function createTreeViewNodes(jsonContent: any): vscode.TreeItem[] {
+	// Extrai apenas os nomes dos processos
+	const names = jsonContent.value.map((item: any) => item.Name);
+
+	// Cria os nós da tree view com base nos nomes dos processos
+	return names.map((name: string) => {
+		return new vscode.TreeItem(name, vscode.TreeItemCollapsibleState.Collapsed);
+	});
+}
+
+class TreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
+	constructor(private readonly extensionPath: string) { }
+
+	getTreeItem(element: vscode.TreeItem): vscode.TreeItem {
+		return element;
+	}
+
+	getChildren(element?: vscode.TreeItem): Thenable<vscode.TreeItem[]> {
+		if (!element) {
+			// Carrega o conteúdo JSON dos arquivos
+			const jsonFiles = ['processes.json', 'cubes.json'];
+			const jsonContents = jsonFiles.map((fileName) => {
+				const filePath = path.join(this.extensionPath, 'src', 'assets', 'examples', fileName);
+				return loadJSON(filePath);
+			});
+
+			// Cria os nós da tree view com base nos nomes dos processos no JSON
+			const treeNodes = jsonContents.flatMap((jsonContent) => {
+				return createTreeViewNodes(jsonContent);
+			});
+
+			return Promise.resolve(treeNodes);
+		}
+		return Promise.resolve([]);
+	}
+}
+
+export function activate(context: vscode.ExtensionContext) {
+	const treeDataProvider = new TreeDataProvider(context.extensionPath);
+	vscode.window.createTreeView('package-processes', { treeDataProvider });
+
+	// Registrar comandos para manipular a tree view, se necessário
+}
+
 export function deactivate() { }

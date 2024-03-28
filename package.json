@@ -40,6 +40,10 @@
         {
           "id": "package-processes",
           "name": "Processes"
+        },
+        {
+          "id": "package-chores",
+          "name": "Chores"
         }
       ]
     }
