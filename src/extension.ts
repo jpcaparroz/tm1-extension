@@ -47,9 +47,9 @@ export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('tm1-extension.tm1Test', () => {
         vscode.window.showInformationMessage('Hello, World!');
 
+        tm1js.
     });
     context.subscriptions.push(disposable);
-    connectToTM1(credentials.GO_New_Stores)
 }
 
 export function deactivate() { }
