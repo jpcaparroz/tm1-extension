@@ -23,7 +23,7 @@
         {
           "id": "tm1-explorer",
           "title": "TM1 Explorer",
-          "icon": "./src/assets/model-cube-space.svg"
+          "icon": "./src/resources/images/dark/database.svg"
         }
       ]
     },
@@ -40,6 +40,10 @@
         {
           "id": "package-processes",
           "name": "Processes"
+        },
+        {
+          "id": "package-control-cube",
+          "name": "Control Cubes"
         },
         {
           "id": "package-chores",
