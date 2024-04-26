@@ -42,13 +42,21 @@
           "name": "Processes"
         },
         {
-          "id": "package-control-cube",
+          "id": "package-chores",
+          "name": "Chores"
+        },
+        {
+          "id": "package-control-cubes",
           "name": "Control Cubes"
         },
         {
-          "id": "package-chores",
-          "name": "Chores"
-        }
+          "id": "package-control-dimensions",
+          "name": "Control Cubes"
+        },
+        {
+          "id": "package-control-processes",
+          "name": "Control Cubes"
+        },
       ]
     }
   },
