@@ -14,8 +14,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "tm1-extension.tm1Test",
-        "title": "TM1 teste"
+        "command": "tm1-extension.loadTree",
+        "title": "Load Database Tree"
+      },
+      {
+        "command": "tm1-extension.treeItemClick",
+        "title": "Click no item da arvore"
       }
     ],
     "viewsContainers": {
@@ -51,12 +55,12 @@
         },
         {
           "id": "package-control-dimensions",
-          "name": "Control Cubes"
+          "name": "Control Dimensions"
         },
         {
           "id": "package-control-processes",
-          "name": "Control Cubes"
-        },
+          "name": "Control Processes"
+        }
       ]
     }
   },

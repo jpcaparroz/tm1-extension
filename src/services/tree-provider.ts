@@ -10,12 +10,11 @@ export class TreeItem extends vscode.TreeItem {
     }
 }
 
-// Define a classe do provedor de árvore para os cubos
 export class TreeProvider implements vscode.TreeDataProvider<TreeItem> {
-    private cubes: string[];
+    private objects: string[];
 
-    constructor(cubes: string[]) {
-        this.cubes = cubes;
+    constructor(objects: string[]) {
+        this.objects = objects;
     }
 
     // Método para fornecer os itens principais da árvore
@@ -26,8 +25,16 @@ export class TreeProvider implements vscode.TreeDataProvider<TreeItem> {
     // Método para fornecer os itens filhos da árvore
     getChildren(element?: TreeItem): vscode.ProviderResult<TreeItem[]> {
         if (!element) {
-            // Retorna os nomes dos cubos como itens principais da árvore
-            return this.cubes.map(cube => new TreeItem(cube, vscode.TreeItemCollapsibleState.None));
+            // Retorna os nomes dos objetos como itens principais da árvore
+            return this.objects.map(object => {
+                // Aqui você pode definir o comando para cada item se desejar
+                const command: vscode.Command = {
+                    title: 'Load ProcessScript',
+                    command: 'tm1-extension.treeItemClick', // Nome do comando registrado na extensão
+                    arguments: [object] // Argumentos opcionais que você pode passar para a ação
+                };
+                return new TreeItem(object, vscode.TreeItemCollapsibleState.None, command);
+            });
         }
         return null; // Não temos subníveis
     }
