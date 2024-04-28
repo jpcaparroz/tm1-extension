@@ -1,1 +1,3 @@
 node_modules
+out
+src\assets\examples\applications.json
