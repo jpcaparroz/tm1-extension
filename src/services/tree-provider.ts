@@ -1,14 +1,5 @@
 import * as vscode from 'vscode';
-
-export class TreeItem extends vscode.TreeItem {
-    constructor(
-        public readonly label: string,
-        public readonly collapsibleState: vscode.TreeItemCollapsibleState,
-        public readonly command?: vscode.Command
-    ) {
-        super(label, collapsibleState);
-    }
-}
+import { TreeItem } from 'vscode';
 
 export class TreeProvider implements vscode.TreeDataProvider<TreeItem> {
     private objects: string[];
@@ -33,7 +24,7 @@ export class TreeProvider implements vscode.TreeDataProvider<TreeItem> {
                     command: 'tm1-extension.treeItemClick', // Nome do comando registrado na extensão
                     arguments: [object] // Argumentos opcionais que você pode passar para a ação
                 };
-                return new TreeItem(object, vscode.TreeItemCollapsibleState.None, command);
+                return new TreeItem(object, vscode.TreeItemCollapsibleState.None);
             });
         }
         return null; // Não temos subníveis

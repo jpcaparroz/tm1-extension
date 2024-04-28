@@ -23,24 +23,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deactivate = exports.activate = void 0;
+exports.createAndOpenFile = void 0;
 const vscode = __importStar(require("vscode"));
-const credentials = __importStar(require("./assets/examples/applications.json"));
-const authenticator_1 = require("./services/authenticator");
-const cubeObject_1 = require("./services/cubeObject");
-const connection = credentials.planner;
-async function activate(context) {
-    let loadTree = vscode.commands.registerCommand('tm1-extension.loadTree', async () => {
-        const tm1Service = await (0, authenticator_1.authenticate)(connection);
-        const cubeItemProvider = new cubeObject_1.CubeItemProvider(tm1Service);
-        const cubes = await cubeItemProvider.getCubes(tm1Service);
-        const treeDataProvider = new TreeDataProvider();
-        treeDataProvider.getChildren = () => Promise.resolve(cubes);
-        vscode.window.createTreeView('tm1-cubes-view', { treeDataProvider });
-    });
-    context.subscriptions.push(loadTree);
+const fs = __importStar(require("fs"));
+async function createAndOpenFile(filePath, content) {
+    await fs.promises.writeFile(filePath, content);
+    const document = await vscode.workspace.openTextDocument(filePath);
+    await vscode.window.showTextDocument(document);
 }
-exports.activate = activate;
-function deactivate() { }
-exports.deactivate = deactivate;
-//# sourceMappingURL=extension.js.map
+exports.createAndOpenFile = createAndOpenFile;
+//# sourceMappingURL=create-file.js.map
