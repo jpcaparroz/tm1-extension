@@ -3,9 +3,9 @@ import * as path from 'path';
 import { TM1Service } from 'tm1js';
 
 export class CubeItemProvider implements vscode.TreeDataProvider<CubeItem> {
+	private cubes: string[];
 
-	constructor(private tm1Service: TM1Service) {
-		this.tm1Service = tm1Service
+	constructor() {
 	}
 
 	// refresh(): void {
@@ -55,7 +55,7 @@ export class CubeItem extends vscode.TreeItem {
 	}
 
 	iconPath = {
-		light: path.join(__filename, '..', '..', 'resources', 'images', 'dark', 'cube.svg'),
+		light: path.join(__filename, '..', '..', 'resources', 'images', 'light', 'cube.svg'),
 		dark: path.join(__filename, '..', '..', 'resources', 'images', 'dark', 'cube.svg')
 	};
 
