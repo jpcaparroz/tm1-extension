@@ -1,9 +1,0 @@
-{
-    "GO_New_Stores": {
-        "address": "localhost",
-        "port": 5010,
-        "user": "admin",
-        "password": "apple",
-        "ssl": true
-    }
-}
