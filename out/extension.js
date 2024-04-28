@@ -28,12 +28,21 @@ const vscode = __importStar(require("vscode"));
 const credentials = __importStar(require("./assets/examples/applications.json"));
 const authenticator_1 = require("./services/authenticator");
 const cube_object_1 = require("./objects/cube-object");
+const process_object_1 = require("./objects/process-object");
+const dimension_object_1 = require("./objects/dimension-object");
+const chore_object_1 = require("./objects/chore-object");
 const connection = credentials.planner;
 async function activate(context) {
     let loadAllTree = vscode.commands.registerCommand('tm1-extension.loadTree', async () => {
         const tm1Service = await (0, authenticator_1.authenticate)(connection);
         const cubeItemProvider = new cube_object_1.CubeItemProvider(tm1Service);
+        const dimensionItemProvider = new dimension_object_1.DimensionItemProvider(tm1Service);
+        const processeItemProvider = new process_object_1.ProcessItemProvider(tm1Service);
+        const choreItemProvider = new chore_object_1.ChoreItemProvider(tm1Service);
         vscode.window.createTreeView('package-cubes', { treeDataProvider: cubeItemProvider });
+        vscode.window.createTreeView('package-dimensions', { treeDataProvider: dimensionItemProvider });
+        vscode.window.createTreeView('package-processes', { treeDataProvider: processeItemProvider });
+        vscode.window.createTreeView('package-chores', { treeDataProvider: choreItemProvider });
     });
     context.subscriptions.push(loadAllTree);
 }

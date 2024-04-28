@@ -26,8 +26,7 @@ export class CubeItemProvider implements vscode.TreeDataProvider<CubeItem> {
 					cube
 				);
 			});
-			console.log(cubesItem);
-			
+
 			return cubesItem;
 
 		} catch (error) {
