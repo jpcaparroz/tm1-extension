@@ -27,40 +27,24 @@ exports.deactivate = exports.activate = void 0;
 const vscode = __importStar(require("vscode"));
 const credentials = __importStar(require("./assets/examples/applications.json"));
 const authenticator_1 = require("./services/authenticator");
-// async function createTreeViewNodes(jsonContent: any): Promise<vscode.TreeItem[]> {
-// 	// tm1js.TM1Service.connect(credentials.)
-// 	const names = jsonContent.value.map((item: any) => item.Name);
-// 	return names.map((name: string) => {
-// 		return new vscode.TreeItem(name, vscode.TreeItemCollapsibleState.Collapsed);
-// 	});
-// }
-// class TreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
-// 	constructor(private readonly extensionPath: string, private readonly fileName: string) { }
-// 	getTreeItem(element: vscode.TreeItem): vscode.TreeItem {
-// 		return element;
-// 	} 
-// 	getChildren(element?: vscode.TreeItem): Thenable<vscode.TreeItem[]> {
-// 		if (!element) {
-// 			// const filePath = path.join(this.extensionPath, 'src', 'assets', 'examples', this.fileName);
-// 			const jsonContent = credentials;
-// 			const treeNodes = createTreeViewNodes(jsonContent);
-// 			return Promise.resolve(treeNodes);
-// 		}
-// 		return Promise.resolve([]);
-// 	}
-// }
-// export function activate(context: vscode.ExtensionContext) {
-// 	// const processesDataProvider = new TreeDataProvider(context.extensionPath, 'processes.json');
-// 	// vscode.window.createTreeView('package-processes', { treeDataProvider: processesDataProvider });
-// 	const cubesDataProvider = new TreeDataProvider(context.extensionPath, 'cubes.json');
-// 	vscode.window.createTreeView('package-cubes', { treeDataProvider: cubesDataProvider });
-// }
-function activate(context) {
-    let disposable = vscode.commands.registerCommand('tm1-extension.tm1Test', () => {
-        vscode.window.showInformationMessage('Hello, World!');
+const cube_object_1 = require("./objects/cube-object");
+const process_object_1 = require("./objects/process-object");
+const dimension_object_1 = require("./objects/dimension-object");
+const chore_object_1 = require("./objects/chore-object");
+const connection = credentials.GO_New_Stores;
+async function activate(context) {
+    let loadAllTree = vscode.commands.registerCommand('tm1-extension.loadTree', async () => {
+        const tm1Service = await (0, authenticator_1.authenticate)(connection);
+        const cubeItemProvider = new cube_object_1.CubeItemProvider(tm1Service);
+        const dimensionItemProvider = new dimension_object_1.DimensionItemProvider(tm1Service);
+        const processeItemProvider = new process_object_1.ProcessItemProvider(tm1Service);
+        const choreItemProvider = new chore_object_1.ChoreItemProvider(tm1Service);
+        vscode.window.createTreeView('package-cubes', { treeDataProvider: cubeItemProvider });
+        vscode.window.createTreeView('package-dimensions', { treeDataProvider: dimensionItemProvider });
+        vscode.window.createTreeView('package-processes', { treeDataProvider: processeItemProvider });
+        vscode.window.createTreeView('package-chores', { treeDataProvider: choreItemProvider });
     });
-    context.subscriptions.push(disposable);
-    (0, authenticator_1.connectToTM1)(credentials.GO_New_Stores);
+    context.subscriptions.push(loadAllTree);
 }
 exports.activate = activate;
 function deactivate() { }
