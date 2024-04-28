@@ -1,8 +1,8 @@
-import * as vscode from 'vscode';
-import * as path from 'path';
+import { TreeDataProvider, TreeItem, TreeItemCollapsibleState, window } from 'vscode';
+import { join } from 'path';
 import { TM1Service, Process } from 'tm1js';
 
-export class ProcessItemProvider implements vscode.TreeDataProvider<ProcessItem> {
+export class ProcessItemProvider implements TreeDataProvider<ProcessItem> {
 	private tm1Service: TM1Service;
 	private control?: boolean;
 
@@ -11,7 +11,7 @@ export class ProcessItemProvider implements vscode.TreeDataProvider<ProcessItem>
 		this.control = control;
 	}
 
-	getTreeItem(element: ProcessItem): vscode.TreeItem {
+	getTreeItem(element: ProcessItem): TreeItem {
 		return element;
 	}
 
@@ -19,7 +19,7 @@ export class ProcessItemProvider implements vscode.TreeDataProvider<ProcessItem>
 		try {
 			return await this.loadProcessItems();
 		} catch (error) {
-			vscode.window.showErrorMessage(`Error getting processes: ${error}`);
+			window.showErrorMessage(`Error getting processes: ${error}`);
 			return [];
 		}
 	}
@@ -31,22 +31,22 @@ export class ProcessItemProvider implements vscode.TreeDataProvider<ProcessItem>
 		} else {
 			processes = await this.tm1Service.processes.getModelProcess();
 		}
-		return processes.map(process => new ProcessItem(process, vscode.TreeItemCollapsibleState.Collapsed, this.control));
+		return processes.map(process => new ProcessItem(process, TreeItemCollapsibleState.Collapsed, this.control));
 	}
 }
 
 
-export class ProcessItem extends vscode.TreeItem {
+export class ProcessItem extends TreeItem {
 	constructor(
 		public readonly process: Process,
-		public readonly collapsibleState = vscode.TreeItemCollapsibleState.None,
+		public readonly collapsibleState = TreeItemCollapsibleState.None,
 		public readonly control?: boolean
 	) {
 		super(process.name, collapsibleState);
 	}
 
 	iconPath = {
-		light: path.join(__filename, '..', '..', '..', 'src', 'resources', 'images', 'light', 'process.svg'),
-		dark: path.join(__filename, '..', '..', '..', 'src', 'resources', 'images', 'dark', 'process.svg')
+		light: join(__filename, '..', '..', '..', 'src', 'resources', 'images', 'light', 'process.svg'),
+		dark: join(__filename, '..', '..', '..', 'src','resources', 'images', 'dark', 'process.svg')
 	};
 }
