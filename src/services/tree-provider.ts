@@ -1,5 +1,17 @@
 import * as vscode from 'vscode';
-import { TreeItem } from 'vscode';
+
+export class TreeItem extends vscode.TreeItem {
+    constructor(
+        public readonly label: string,
+        public readonly collapsibleState: vscode.TreeItemCollapsibleState,
+        public readonly command?: vscode.Command,
+        public readonly iconPath?: vscode.ThemeIcon | vscode.Uri
+    ) {
+        super(label, collapsibleState);
+        this.command = command;
+        this.iconPath = iconPath;
+    }
+}
 
 export class TreeProvider implements vscode.TreeDataProvider<TreeItem> {
     private objects: string[];
