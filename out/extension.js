@@ -27,17 +27,15 @@ exports.deactivate = exports.activate = void 0;
 const vscode = __importStar(require("vscode"));
 const credentials = __importStar(require("./assets/examples/applications.json"));
 const authenticator_1 = require("./services/authenticator");
-const cube_object_1 = require("./services/cube-object");
+const cube_object_1 = require("./objects/cube-object");
 const connection = credentials.planner;
 async function activate(context) {
-    let loadTree = vscode.commands.registerCommand('tm1-extension.loadTree', async () => {
+    let loadAllTree = vscode.commands.registerCommand('tm1-extension.loadTree', async () => {
         const tm1Service = await (0, authenticator_1.authenticate)(connection);
-        const cubeItemProvider = new cube_object_1.CubeItemProvider();
-        const cubes = await cubeItemProvider.getCubes(tm1Service);
-        cubeItemProvider.getChildren = () => Promise.resolve(cubes);
-        vscode.window.createTreeView('package-cubes', { cubeItemProvider });
+        const cubeItemProvider = new cube_object_1.CubeItemProvider(tm1Service);
+        vscode.window.createTreeView('package-cubes', { treeDataProvider: cubeItemProvider });
     });
-    context.subscriptions.push(loadTree);
+    context.subscriptions.push(loadAllTree);
 }
 exports.activate = activate;
 function deactivate() { }

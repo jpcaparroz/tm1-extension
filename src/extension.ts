@@ -5,22 +5,22 @@ import * as credentials from './assets/examples/applications.json';
 import { authenticate } from './services/authenticator';
 
 import { TM1Service } from 'tm1js';
-import { CubeItem, CubeItemProvider } from './services/cube-object';
+import { CubeItem, CubeItemProvider } from './objects/cube-object';
+import { loadTreeCube } from './services/cube-service';
 
 const connection = credentials.planner
 
 export async function activate(context: vscode.ExtensionContext) {
-    let loadTree = vscode.commands.registerCommand('tm1-extension.loadTree', async () => {
+    let loadAllTree = vscode.commands.registerCommand('tm1-extension.loadTree', async () => {
         const tm1Service: TM1Service = await authenticate(connection);
-        const cubeItemProvider = new CubeItemProvider();
-        const cubes = await cubeItemProvider.getCubes(tm1Service);
-        
-        cubeItemProvider.getChildren = () => Promise.resolve(cubes);
-        vscode.window.createTreeView('package-cubes', { cubeItemProvider});
 
+        const cubeItemProvider = new CubeItemProvider(tm1Service);
+
+        
+        vscode.window.createTreeView<CubeItem>('package-cubes', { treeDataProvider: cubeItemProvider });
     });
 
-    context.subscriptions.push(loadTree)
+    context.subscriptions.push(loadAllTree)
 }
 
 export function deactivate() { }
