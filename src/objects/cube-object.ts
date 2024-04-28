@@ -3,50 +3,50 @@ import * as path from 'path';
 import { TM1Service, Cube } from 'tm1js';
 
 export class CubeItemProvider implements vscode.TreeDataProvider<CubeItem> {
-	private tm1Service: TM1Service
+	private tm1Service: TM1Service;
+	private control?: boolean;
 
-	constructor(tm1Service: TM1Service) {
-		this.tm1Service = tm1Service
+	constructor(tm1Service: TM1Service, control?: boolean) {
+		this.tm1Service = tm1Service;
+		this.control = control;
 	}
 
 	getTreeItem(element: CubeItem): vscode.TreeItem {
 		return element;
 	}
 
-	getChildren(): Thenable<CubeItem[]> {
-		return Promise.resolve(this.getCubes());
-	}
-
-	private async getCubes(): Promise<CubeItem[]> {
+	async getChildren(): Promise<CubeItem[]> {
 		try {
-			const cubes = await this.tm1Service.cubes.getAll();
-			
-			const cubesItem: CubeItem[] = cubes.map(cube => {
-				return new CubeItem(
-					cube
-				);
-			});
-
-			return cubesItem;
-
+			return await this.loadCubeItems();
 		} catch (error) {
 			vscode.window.showErrorMessage(`Error getting cubes: ${error}`);
 			return [];
 		}
+	}
 
+	private async loadCubeItems(): Promise<CubeItem[]> {
+		let cubes: Cube[] = [];
+		if (this.control) {
+			cubes = await this.tm1Service.cubes.getControlCubes();
+		} else {
+			cubes = await this.tm1Service.cubes.getModelCubes();
+		}
+		return cubes.map(cube => new CubeItem(cube, vscode.TreeItemCollapsibleState.Collapsed, this.control));
 	}
 }
+
 
 export class CubeItem extends vscode.TreeItem {
 	constructor(
 		public readonly cube: Cube,
-		public readonly collapsibleState = vscode.TreeItemCollapsibleState.None
+		public readonly collapsibleState = vscode.TreeItemCollapsibleState.None,
+		public readonly control?: boolean
 	) {
 		super(cube.name, collapsibleState);
 	}
 
 	iconPath = {
 		light: path.join(__filename, '..', '..', '..', 'src', 'resources', 'images', 'light', 'cube.svg'),
-		dark: path.join(__filename, '..', '..', '..', 'src','resources', 'images', 'dark', 'cube.svg')
+		dark: path.join(__filename, '..', '..', '..', 'src', 'resources', 'images', 'dark', 'cube.svg')
 	};
 }
