@@ -7,9 +7,12 @@ import { ProcessItemProvider } from "../objects/process-object";
 
 export enum ItemProviderType {
     CubeItemProvider = 1,
-    DimensionItemProvider = 2,
-    ProcessItemProvider = 3,
-    ChoreItemProvider = 4
+    ControlCubeItemProvider = 2,
+    DimensionItemProvider = 3,
+    ControlDimensionItemProvider = 4,
+    ProcessItemProvider = 5,
+    ControlProcessItemProvider = 6,
+    ChoreItemProvider = 7
 }
 
 export class TreeService {
@@ -18,19 +21,24 @@ export class TreeService {
     constructor(tm1Service: TM1Service) {
         this.itemProviderType = {
             [ItemProviderType.CubeItemProvider]: new CubeItemProvider(tm1Service),
+            [ItemProviderType.ControlCubeItemProvider]: new CubeItemProvider(tm1Service, true),
             [ItemProviderType.DimensionItemProvider]: new DimensionItemProvider(tm1Service),
+            [ItemProviderType.ControlDimensionItemProvider]: new DimensionItemProvider(tm1Service, true),
             [ItemProviderType.ProcessItemProvider]: new ProcessItemProvider(tm1Service),
+            [ItemProviderType.ControlProcessItemProvider]: new ProcessItemProvider(tm1Service, true),
             [ItemProviderType.ChoreItemProvider]: new ChoreItemProvider(tm1Service)
         };
-
         this.loadAllTree();
     }
 
     private loadAllTree() {
         commands.registerCommand('tm1-extension.loadTree', async () => {
             this.loadTree('package-cubes', ItemProviderType.CubeItemProvider);
+            this.loadTree('package-control-cubes', ItemProviderType.ControlCubeItemProvider);
             this.loadTree('package-dimensions', ItemProviderType.DimensionItemProvider);
+            this.loadTree('package-control-dimensions', ItemProviderType.ControlDimensionItemProvider);
             this.loadTree('package-processes', ItemProviderType.ProcessItemProvider);
+            this.loadTree('package-control-processes', ItemProviderType.ControlProcessItemProvider);
             this.loadTree('package-chores', ItemProviderType.ChoreItemProvider);
         });
     }
