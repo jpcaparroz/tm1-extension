@@ -1,7 +1,7 @@
-import { TreeDataProvider, TreeView, commands, window } from 'vscode';
+import { TreeDataProvider, TreeView, commands, window, Uri, Position } from 'vscode';
 import { TM1Service } from "tm1js";
 import { ChoreItemProvider } from "../objects/chore-object";
-import { CubeItemProvider } from "../objects/cube-object";
+import { CubeItem, CubeItemProvider } from "../objects/cube-object";
 import { DimensionItemProvider } from "../objects/dimension-object";
 import { ProcessItemProvider } from "../objects/process-object";
 
@@ -28,7 +28,9 @@ export class TreeService {
             [ItemProviderType.ControlProcessItemProvider]: new ProcessItemProvider(tm1Service, true),
             [ItemProviderType.ChoreItemProvider]: new ChoreItemProvider(tm1Service)
         };
+
         this.loadAllTree();
+        this.registerCubeItemClickCommand();
     }
 
     private loadAllTree() {
@@ -46,5 +48,26 @@ export class TreeService {
     loadTree(viewId: string, object: ItemProviderType): TreeView<any> {
         const provider = this.itemProviderType[object] as TreeDataProvider<any>;
         return window.createTreeView(viewId, { treeDataProvider: provider });
+    }
+
+    private registerCubeItemClickCommand() {
+        commands.registerCommand('tm1-extension.cubeItemClick', (cubeItem: CubeItem) => {
+            this.openCubeItemContent(cubeItem);
+        });
+    }
+
+    private async openCubeItemContent(cubeItem: CubeItem) {
+        try {
+            const rule = cubeItem.cube.rules;
+            const textDocument = await window.showTextDocument(Uri.parse(`untitled:${cubeItem.cube.name}.rux`));
+
+            if (textDocument) {
+                textDocument.edit(editBuilder => {
+                    editBuilder.insert(new Position(0, 0), JSON.stringify(rule, null, 2));
+                });
+            }
+        } catch (error) {
+            window.showErrorMessage(`Error opening cube item content: ${error}`);
+        }
     }
 }

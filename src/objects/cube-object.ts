@@ -26,27 +26,38 @@ export class CubeItemProvider implements vscode.TreeDataProvider<CubeItem> {
 
 	private async loadCubeItems(): Promise<CubeItem[]> {
 		let cubes: Cube[] = [];
+
 		if (this.control) {
 			cubes = await this.tm1Service.cubes.getControlCubes();
 		} else {
 			cubes = await this.tm1Service.cubes.getModelCubes();
 		}
-		return cubes.map(cube => new CubeItem(cube, vscode.TreeItemCollapsibleState.Collapsed, this.control));
+
+		return cubes.map(cube => new CubeItem(cube, vscode.TreeItemCollapsibleState.None, this.control));
 	}
 }
-
 
 export class CubeItem extends vscode.TreeItem {
 	constructor(
 		public readonly cube: Cube,
-		public readonly collapsibleState = vscode.TreeItemCollapsibleState.None,
+		public readonly collapsibleState: vscode.TreeItemCollapsibleState,
 		public readonly control?: boolean
 	) {
 		super(cube.name, collapsibleState);
-	}
+	};
 
 	iconPath = {
 		light: path.join(__filename, '..', '..', '..', 'src', 'resources', 'images', 'light', 'cube.svg'),
 		dark: path.join(__filename, '..', '..', '..', 'src', 'resources', 'images', 'dark', 'cube.svg')
 	};
+
+	command = {
+		command: 'tm1-extension.cubeItemClick',
+		title: 'Open Cube',
+		arguments: [this]
+	};
+
+	getContent(): Cube {
+		return this.cube;
+	}
 }

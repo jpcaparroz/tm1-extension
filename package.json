@@ -9,7 +9,9 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartup"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -20,7 +22,11 @@
       {
         "command": "tm1-extension.treeItemClick",
         "title": "Click no item da arvore"
-      }
+      },
+      {
+        "command": "tm1-extension.cubeItemClick",
+        "title": "Abrir Cubo"
+    }
     ],
     "viewsContainers": {
       "activitybar": [
