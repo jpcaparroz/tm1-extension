@@ -18,19 +18,22 @@ export async function openRuleOfCubeItem(cubeItem: CubeItem, tm1Serivce: TM1Serv
                 editBuilder.insert(new Position(0, 0), rule);
             });
         }
+
+        workspace.onDidSaveTextDocument((savedDocument) => {
+            if (savedDocument === textDocument.document) {
+                saveRuleOfCubeItem(cubeItem, tm1Serivce, textDocument.document.getText());
+            }
+        });
     } catch (error) {
         window.showErrorMessage(`Error opening cube rule: ${error}`);
     }
 }
 
-async function saveRuleOfCubeItem(cubeItem: CubeItem, tm1Serivce: TM1Service) {
-
+async function saveRuleOfCubeItem(cubeItem: CubeItem, tm1Serivce: TM1Service, content: string) {
     try {
-        const cube = tm1Serivce.cubes.get(cubeItem.cube.name)
-        cube.
-        
+        tm1Serivce.cubes.update_or_create_rule(cubeItem.cube.name, content);
     } catch (error) {
-        
+        window.showErrorMessage(`Error saving cube rule: ${error}`);
     }
 
 }
