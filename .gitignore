@@ -1,0 +1,4 @@
+node_modules
+applications.json
+out/
+test/
