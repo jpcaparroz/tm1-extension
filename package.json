@@ -1,86 +1,86 @@
 {
-  "name": "tm1-extension",
-  "displayName": "tm1-extension",
-  "description": "Test",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.87.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "tm1-extension.loadTree",
-        "title": "Load Database Tree"
-      },
-      {
-        "command": "tm1-extension.treeItemClick",
-        "title": "Click no item da arvore"
-      }
-    ],
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "tm1-explorer",
-          "title": "TM1 Explorer",
-          "icon": "./src/resources/images/dark/database.svg"
-        }
-      ]
+    "name": "tm1-extension",
+    "displayName": "tm1-extension",
+    "description": "Test",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.87.0"
     },
-    "views": {
-      "tm1-explorer": [
-        {
-          "id": "package-cubes",
-          "name": "Cubes"
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "tm1-extension.loadTree",
+                "title": "Load Database Tree"
+            },
+            {
+                "command": "tm1-extension.treeItemClick",
+                "title": "Click no item da arvore"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "tm1-explorer",
+                    "title": "TM1 Explorer",
+                    "icon": "./src/resources/images/dark/database.svg"
+                }
+            ]
         },
-        {
-          "id": "package-dimensions",
-          "name": "Dimension"
-        },
-        {
-          "id": "package-processes",
-          "name": "Processes"
-        },
-        {
-          "id": "package-chores",
-          "name": "Chores"
-        },
-        {
-          "id": "package-control-cubes",
-          "name": "Control Cubes"
-        },
-        {
-          "id": "package-control-dimensions",
-          "name": "Control Dimensions"
-        },
-        {
-          "id": "package-control-processes",
-          "name": "Control Processes"
+        "views": {
+            "tm1-explorer": [
+                {
+                    "id": "package-cubes",
+                    "name": "Cubes"
+                },
+                {
+                    "id": "package-dimensions",
+                    "name": "Dimension"
+                },
+                {
+                    "id": "package-processes",
+                    "name": "Processes"
+                },
+                {
+                    "id": "package-chores",
+                    "name": "Chores"
+                },
+                {
+                    "id": "package-control-cubes",
+                    "name": "Control Cubes"
+                },
+                {
+                    "id": "package-control-dimensions",
+                    "name": "Control Dimensions"
+                },
+                {
+                    "id": "package-control-processes",
+                    "name": "Control Processes"
+                }
+            ]
         }
-      ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.87.0",
+        "@types/mocha": "^10.0.6",
+        "@types/node": "18.x",
+        "@typescript-eslint/eslint-plugin": "^7.0.2",
+        "@typescript-eslint/parser": "^7.0.2",
+        "eslint": "^8.56.0",
+        "typescript": "^5.3.3",
+        "@vscode/test-cli": "^0.0.6",
+        "@vscode/test-electron": "^2.3.9"
     }
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "vscode-test"
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.87.0",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "18.x",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
-    "@vscode/test-cli": "^0.0.6",
-    "@vscode/test-electron": "^2.3.9"
-  }
 }
